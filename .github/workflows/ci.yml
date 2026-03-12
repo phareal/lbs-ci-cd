@@ -10,6 +10,11 @@ on:
       - main
       - master
 
+env:
+  # Force les GitHub Actions JavaScript (checkout, setup-node, etc.)
+  # à tourner sur Node.js 24, compatible avec la future valeur par défaut.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -20,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -39,7 +44,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -59,7 +64,7 @@ jobs:
       - name: Install dependencies
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install project dependencies
@@ -69,7 +74,8 @@ jobs:
         run: echo "Build step - rien à compiler pour cette API Node.js"
 
   deploy:
-    # Pour l'instant, simple placeholder de déploiement
+    # Pour l'instant, simple placeholder de déploiement.
+    # IMPORTANT : ce job ne s'exécute que si lint + test (coverage >= 70 %) + build sont passés.
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     needs: build

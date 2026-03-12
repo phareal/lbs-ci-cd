@@ -1,7 +1,7 @@
 # User API
 REST API pour gestion d'utilisateurs.
 
-![CI - Lint, Test, Build, Deploy](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/phareal/lbs-ci-cd/actions/workflows/ci.yml/badge.svg)](https://github.com/phareal/lbs-ci-cd/actions)
 
 ## Installation
 ```bash
